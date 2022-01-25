@@ -1,0 +1,43 @@
+.screen-container{
+    height: 100vh;
+    background: pink;   
+    grid-template-areas: 
+        "title"
+        "array"
+        "buttons";
+    user-select:none;
+}
+
+.title-container{
+    grid-area: "title";
+    background: darkgoldenrod;
+    height: 150px;
+    font-size: 5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.array-container {
+    grid-area: "array";
+    background-color: aqua;
+}
+
+.array-bar {
+  width: 10px;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.sorting-buttons{
+    grid-area: "buttons";
+    background-color: grey;
+    margin-top: 50px;
+}
+
+.gen-button{
+    left: 50px;
+    margin-right: 200px;
+}
+.button + .button {
+    margin-left: 50px;
+}
