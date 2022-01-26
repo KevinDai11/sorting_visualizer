@@ -1,6 +1,7 @@
 .screen-container{
     height: 100vh;
-    background: pink;   
+    background: darkslategrey;
+
     grid-template-areas: 
         "title"
         "array"
@@ -10,8 +11,7 @@
 
 .title-container{
     grid-area: "title";
-    background: darkgoldenrod;
-    height: 150px;
+    height: 10vh;
     font-size: 5em;
     font-weight: bold;
     text-align: center;
@@ -19,7 +19,8 @@
 
 .array-container {
     grid-area: "array";
-    background-color: aqua;
+    height: 40vh;
+    margin-top: 150px;
 }
 
 .array-bar {
@@ -31,12 +32,25 @@
 .sorting-buttons{
     grid-area: "buttons";
     background-color: grey;
-    margin-top: 50px;
+    height: calc(50vh - 150px);
 }
 
 .gen-button{
+    font-size: 2em;
+    margin-top: 100px;
     left: 50px;
-    margin-right: 200px;
+    margin-right: 100px;
+    background-color: burlywood;
+}
+.gen-button:hover{
+    background-color: rgba(222, 184, 135, 0.555);
+
+}
+.button{
+    font-size: 1.5em;
+}
+.button:hover{
+    background-color: rgb(255, 255, 255);
 }
 .button + .button {
     margin-left: 50px;
