@@ -4,8 +4,8 @@
 
     grid-template-areas: 
         "title"
-        "array"
-        "buttons";
+        "buttons"
+        "array";
     user-select:none;
 }
 
@@ -18,9 +18,9 @@
 }
 
 .array-container {
+    position: absolute;
     grid-area: "array";
-    height: 40vh;
-    margin-top: 150px;
+    bottom: 5%;
 }
 
 .array-bar {
@@ -31,13 +31,12 @@
 
 .sorting-buttons{
     grid-area: "buttons";
-    background-color: grey;
     height: calc(50vh - 150px);
 }
 
 .gen-button{
     font-size: 2em;
-    margin-top: 100px;
+    margin-top: 75px;
     left: 50px;
     margin-right: 100px;
     background-color: burlywood;
@@ -48,9 +47,10 @@
 }
 .button{
     font-size: 1.5em;
+    background-color: rgb(192, 94, 94);
 }
 .button:hover{
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(177, 41, 41, 0.438);
 }
 .button + .button {
     margin-left: 50px;
