@@ -6,37 +6,23 @@
         "title"
         "buttons"
         "array";
-    user-select:none;
 }
 
 .title-container{
     grid-area: "title";
-    height: 10vh;
+    height: 12vh;
     font-size: 5em;
     font-weight: bold;
     text-align: center;
 }
 
-.array-container {
-    position: absolute;
-    grid-area: "array";
-    bottom: 5%;
-}
-
-.array-bar {
-  width: 10px;
-  display: inline-block;
-  margin: 0 2px;
-}
-
 .sorting-buttons{
+    margin-top: 50px;
     grid-area: "buttons";
-    height: calc(50vh - 150px);
-}
+    }
 
 .gen-button{
     font-size: 2em;
-    margin-top: 75px;
     left: 50px;
     margin-right: 100px;
     background-color: burlywood;
@@ -55,3 +41,20 @@
 .button + .button {
     margin-left: 50px;
 }
+
+.array-container {
+    margin-top: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 50px;
+    grid-area: "array";
+    align-items: center;
+    bottom: 5%;
+}
+
+.array-bar {
+    width: 10px;
+    display: inline-block;
+    margin: 0 2px;
+}
+
