@@ -8,7 +8,7 @@ const PRIMARY_COLOR = "#ADD8E6"; //light blue
 
 var animation_speed = 100; //lower = faster
 var isAnimating = false;
-var num_bars = 10;
+var num_bars = 100;
 
 
 
@@ -55,17 +55,34 @@ export default class SortingVisualizer extends React.Component{
     mergeSort(){
         isAnimating = true;
         const animations = getMergeSortAnimations(this.state.array);
+        const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {
-            const arrayBars = document.getElementsByClassName('array-bar');
-            setTimeout(() => {
-                        const [barOneIdx, newHeight] = animations[i];
-                        const barOneStyle = arrayBars[barOneIdx].style;
-                        barOneStyle.height = `${newHeight*5}px`;
-                        barOneStyle.backgroundColor = "lightgreen";
-            }, i * animation_speed);       
+            const isColorChange = i % 2 !== 0;
+                for(let j = 0; j < animations[i].length; j++){
+                    if(isColorChange){
+                        setTimeout(() => {
+                            const [barOneIdx, newHeight] = animations[i][j];
+                            const barOneStyle = arrayBars[barOneIdx].style;
+                            barOneStyle.height = `${newHeight*5}px`;
+                            barOneStyle.backgroundColor = "yellow";
+                        }, i * animation_speed);}
+                    else{
+                        setTimeout(() => {
+                            const [barOneIdx, BarTwoIdx] = animations[i][j];
+                            const barOneStyle = arrayBars[barOneIdx].style;
+                            const barTwoStyle = arrayBars[BarTwoIdx].style;
+                            barOneStyle.backgroundColor = "red";
+                            barTwoStyle.backgroundColor = "red";
+                        }, i * animation_speed);
+                    }
+                }    
         }
         setTimeout(() => {
             isAnimating = false;
+            for(var i = 0; i < arrayBars.length; i++){
+                const barOneStyle = arrayBars[i].style;
+                barOneStyle.backgroundColor = "lightgreen";
+            }
         }, animation_speed * animations.length);
         
     }
@@ -87,6 +104,7 @@ export default class SortingVisualizer extends React.Component{
                 <button className = "button" onClick={() => this.heapSort()}>Heap Sort</button>
                 <button className = "button" onClick={() => this.bubbleSort()}>Bubble Sort</button>
                 <button className = "button" onClick={() => this.insertionSort()}>Insertion Sort</button>
+                <button className = "button" onClick={() => this.selectionSort()}>Selection Sort</button>
             </div>
 
             <div className="array-container"

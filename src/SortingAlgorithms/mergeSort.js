@@ -24,38 +24,45 @@ function doMerge(mainArray, start, middle, end, auxiliaryArray, animations,) {
   let k = start;
   let i = start;
   let j = middle + 1;
+
+  const animeGroup = []
+  const animeHighlight = [];
+
   while (i <= middle && j <= end) {
     // These are the values that we're comparing; we push them once
     // to change their color.
-    //animations.push([i, j]);
+    animeHighlight.push([i,j]);
     // These are the values that we're comparing; we push them a second
     // time to revert their color.
    // animations.push([i, j]);
     if (auxiliaryArray[i] <= auxiliaryArray[j]) {
       // We overwrite the value at index k in the original array with the
       // value at index i in the auxiliary array.
-      animations.push([k, auxiliaryArray[i]]);
+      animeGroup.push([k, auxiliaryArray[i]]);
       mainArray[k++] = auxiliaryArray[i++];
 
     } else {
       // We overwrite the value at index k in the original array with the
       // value at index j in the auxiliary array.
-      animations.push([k, auxiliaryArray[j]]);
+      animeGroup.push([k, auxiliaryArray[j]]);
       mainArray[k++] = auxiliaryArray[j++];
     }
   }
   while (i <= middle) {
+    animeHighlight.push([i,i]);
     //animations.push([i, i]);
-    //animations.push([i, i]);
-    animations.push([k, auxiliaryArray[i]]);
+    animeGroup.push([k, auxiliaryArray[i]]);
     mainArray[k++] = auxiliaryArray[i++];
   }
   while (j <= end) {
-    //animations.push([j, j]);
+    animeHighlight.push([j,j]);
     //animations.push([j, j]); 
-    animations.push([k, auxiliaryArray[j]]);
+    animeGroup.push([k, auxiliaryArray[j]]);
     mainArray[k++] = auxiliaryArray[j++];
   }
+
+  animations.push(animeHighlight);
+  animations.push(animeGroup);
 }
 
 

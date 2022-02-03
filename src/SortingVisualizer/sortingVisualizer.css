@@ -32,14 +32,14 @@
 
 }
 .button{
-    font-size: 1.5em;
+    font-size: 1.25em;
     background-color: rgb(192, 94, 94);
 }
 .button:hover{
     background-color: rgba(177, 41, 41, 0.438);
 }
 .button + .button {
-    margin-left: 50px;
+    margin-left: 30px;
 }
 
 .array-container {
