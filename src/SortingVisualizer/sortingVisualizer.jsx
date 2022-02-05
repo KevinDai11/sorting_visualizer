@@ -1,11 +1,11 @@
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 import React from "react";
 import {getMergeSortAnimations} from '../SortingAlgorithms/mergeSort.js';
+import {getSelectionSortAnimations} from "../SortingAlgorithms/selectionSort.js";
 import './sortingVisualizer.css';
 
 
 const PRIMARY_COLOR = "#ADD8E6"; //light blue
-
+const arrayBars = document.getElementsByClassName('array-bar');
 var animation_speed = 100; //lower = faster
 var isAnimating = false;
 var num_bars = 100;
@@ -42,20 +42,24 @@ export default class SortingVisualizer extends React.Component{
             const barOneStyle = bars[i].style;
             barOneStyle.backgroundColor = PRIMARY_COLOR;
         }
-        
         this.setState({array});
-        
-        
-        
         
     }
 
+    greenArray(delay){
+        setTimeout(() => {
+            isAnimating = false;
+            for(var i = 0; i < arrayBars.length; i++){
+                const barOneStyle = arrayBars[i].style;
+                barOneStyle.backgroundColor = "lightgreen";
+            }
+        }, animation_speed * 1.025 * delay);
+    }
 
     //sorts
     mergeSort(){
         isAnimating = true;
         const animations = getMergeSortAnimations(this.state.array);
-        const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {
             const isColorChange = i % 2 !== 0;
                 for(let j = 0; j < animations[i].length; j++){
@@ -77,14 +81,51 @@ export default class SortingVisualizer extends React.Component{
                     }
                 }    
         }
-        setTimeout(() => {
-            isAnimating = false;
-            for(var i = 0; i < arrayBars.length; i++){
-                const barOneStyle = arrayBars[i].style;
-                barOneStyle.backgroundColor = "lightgreen";
+        this.greenArray(animations.length);
+    }
+
+    selectionSort(){
+        isAnimating = true;
+        const animations = getSelectionSortAnimations(this.state.array);
+        animation_speed /= 100;
+        let delay = 0;
+        for(let i = 0; i < animations.length; i++){
+            const isColorChange = i % 2 === 0;
+            for(let j = 0; j < animations[i].length; j++){
+                
+                if(isColorChange){
+                    if(animations[i][j].length == 4){
+                        setTimeout(() => {
+                            const [barOneIdx, color, barTwoIdx, color2] = animations[i][j];
+                            const barOneStyle = arrayBars[barOneIdx].style;
+                            const barTwoStyle = arrayBars[barTwoIdx].style;
+                            barOneStyle.backgroundColor = color;
+                            barTwoStyle.backgroundColor = color2;
+                    }, delay++ * animation_speed);}
+                        else{
+                        setTimeout(() => {
+                                const [barOneIdx, color] = animations[i][j];
+                                const barOneStyle = arrayBars[barOneIdx].style;
+                                barOneStyle.backgroundColor = color;
+                        }, delay++ * animation_speed);}
+                }
+                else{
+                    setTimeout(() => {
+                        const [barOneIdx, newHeight, barTwoIdx, newHeight2] = animations[i][j];
+                        const barOneStyle = arrayBars[barOneIdx].style;
+                        const barTwoStyle = arrayBars[barTwoIdx].style;
+                        barOneStyle.height = `${newHeight*5}px`;
+                        barOneStyle.backgroundColor = "lightgreen";
+                        barTwoStyle.height = `${newHeight2*5}px`;
+                        if(barOneIdx!=barTwoIdx)
+                            barTwoStyle.backgroundColor = PRIMARY_COLOR;
+                    }, delay++ * animation_speed);
+                }
             }
-        }, animation_speed * animations.length);
+        }
         
+        this.greenArray(delay);
+        animation_speed*=100;
     }
     
    
