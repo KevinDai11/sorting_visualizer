@@ -1,7 +1,8 @@
 import React from "react";
 import {getMergeSortAnimations} from '../SortingAlgorithms/mergeSort.js';
 import {getSelectionSortAnimations} from "../SortingAlgorithms/selectionSort.js";
-import { getBubbleSortAnimations } from "../SortingAlgorithms/bubbleSort.js";
+import {getBubbleSortAnimations} from "../SortingAlgorithms/bubbleSort.js";
+import {getInsertionSortAnimations} from "../SortingAlgorithms/insertionSort.js";
 import './sortingVisualizer.css';
 
 
@@ -9,8 +10,8 @@ const PRIMARY_COLOR = "#ADD8E6"; //light blue
 const arrayBars = document.getElementsByClassName('array-bar');
 
 var isAnimating = false;
-var num_bars = 100;
-var animation_speed = 1000*num_bars; //lower = faster
+var num_bars = 10;
+var animation_speed = 100*num_bars; //lower = faster
 
 
 
@@ -168,8 +169,39 @@ export default class SortingVisualizer extends React.Component{
         }
         this.greenArray(delay);
         animation_speed*=num_bars*5;
-        
-        
+    }
+
+    insertionSort(){
+        isAnimating = true;
+        const animations = getInsertionSortAnimations(this.state.array);
+        let delay = 0;
+        for(let i = 0; i < animations.length; i++){
+            if(animations[i].length == 2){
+                setTimeout(() => {
+                    const [barOneIdx, color] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    barOneStyle.backgroundColor = color;
+                }, delay++ * animation_speed);
+            }
+            if(animations[i].length == 3){
+                setTimeout(() => {
+                    const [barOneIdx, newHeight, color] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    barOneStyle.height = `${newHeight*5}px`;
+                    barOneStyle.backgroundColor = color;
+                }, delay++ * animation_speed);
+            }
+            if(animations[i].length == 5){
+                setTimeout(() => {
+                    const [barOneIdx, color, barTwoIdx, newHeight2, color2] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    barOneStyle.backgroundColor = color;
+                    const barTwoStyle = arrayBars[barTwoIdx].style;
+                    barTwoStyle.height = `${newHeight2*5}px`;
+                    barTwoStyle.color = color2;
+                }, delay++ * animation_speed);
+            }
+        }
     }
     
    

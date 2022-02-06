@@ -5,7 +5,6 @@ export function getSelectionSortAnimations(array){
     
     doSelection(array, animations);
     return animations;
-
 }
 
 function doSelection(array, animations){
