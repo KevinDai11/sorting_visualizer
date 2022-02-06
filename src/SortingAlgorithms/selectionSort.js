@@ -14,7 +14,6 @@ function doSelection(array, animations){
     for(let i = 0; i < n - 1; i++){
         const animateHighlight = [];
         const animateChange = [];
-        const animteBack = [];
         let min_index = i;
         animateHighlight.push([i,"red"]);
 

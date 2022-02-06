@@ -1,14 +1,16 @@
 import React from "react";
 import {getMergeSortAnimations} from '../SortingAlgorithms/mergeSort.js';
 import {getSelectionSortAnimations} from "../SortingAlgorithms/selectionSort.js";
+import { getBubbleSortAnimations } from "../SortingAlgorithms/bubbleSort.js";
 import './sortingVisualizer.css';
 
 
 const PRIMARY_COLOR = "#ADD8E6"; //light blue
 const arrayBars = document.getElementsByClassName('array-bar');
-var animation_speed = 100; //lower = faster
+
 var isAnimating = false;
 var num_bars = 100;
+var animation_speed = 1000*num_bars; //lower = faster
 
 
 
@@ -59,6 +61,7 @@ export default class SortingVisualizer extends React.Component{
     //sorts
     mergeSort(){
         isAnimating = true;
+        animation_speed/=num_bars;
         const animations = getMergeSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const isColorChange = i % 2 !== 0;
@@ -82,17 +85,17 @@ export default class SortingVisualizer extends React.Component{
                 }    
         }
         this.greenArray(animations.length);
+        animation_speed*=num_bars;
     }
 
     selectionSort(){
         isAnimating = true;
         const animations = getSelectionSortAnimations(this.state.array);
-        animation_speed /= 100;
+        animation_speed /= num_bars*10;
         let delay = 0;
         for(let i = 0; i < animations.length; i++){
             const isColorChange = i % 2 === 0;
             for(let j = 0; j < animations[i].length; j++){
-                
                 if(isColorChange){
                     if(animations[i][j].length == 4){
                         setTimeout(() => {
@@ -125,7 +128,48 @@ export default class SortingVisualizer extends React.Component{
         }
         
         this.greenArray(delay);
-        animation_speed*=100;
+        animation_speed*=num_bars*10;
+    }
+
+    bubbleSort(){
+        isAnimating = true;
+        const animations = getBubbleSortAnimations(this.state.array);
+        animation_speed/=num_bars*5;
+        let delay = 0;
+        for(let i = 0; i < animations.length; i++){
+            
+            if(animations[i].length == 2){
+                setTimeout(() => {
+                    const [barOneIdx, color] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    barOneStyle.backgroundColor = color;
+                }, delay++ * animation_speed);
+            }
+            else if(animations[i].length == 4){
+                setTimeout(() => {
+                    const [barOneIdx, color, barTwoIdx, color2] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    const barTwoStyle = arrayBars[barTwoIdx].style;
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color2;
+                }, delay++ * animation_speed);
+            }
+            else if(animations[i].length == 6){
+                setTimeout(() => {
+                    const [barOneIdx,newHeight, color, barTwoIdx, newHeight2, color2] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    const barTwoStyle = arrayBars[barTwoIdx].style;
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color2;
+                    barOneStyle.height = `${newHeight*5}px`;
+                    barTwoStyle.height = `${newHeight2*5}px`;
+                }, delay++ * animation_speed);
+            }
+        }
+        this.greenArray(delay);
+        animation_speed*=num_bars*5;
+        
+        
     }
     
    
