@@ -3,6 +3,7 @@ import {getMergeSortAnimations} from '../SortingAlgorithms/mergeSort.js';
 import {getSelectionSortAnimations} from "../SortingAlgorithms/selectionSort.js";
 import {getBubbleSortAnimations} from "../SortingAlgorithms/bubbleSort.js";
 import {getInsertionSortAnimations} from "../SortingAlgorithms/insertionSort.js";
+import { getQuickSortAnimations } from "../SortingAlgorithms/quickSort.js";
 import './sortingVisualizer.css';
 
 
@@ -62,7 +63,6 @@ export default class SortingVisualizer extends React.Component{
     //sorts
     mergeSort(){
         isAnimating = true;
-        animation_speed/=num_bars;
         const animations = getMergeSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const isColorChange = i % 2 !== 0;
@@ -86,13 +86,11 @@ export default class SortingVisualizer extends React.Component{
                 }    
         }
         this.greenArray(animations.length);
-        animation_speed*=num_bars;
     }
 
     selectionSort(){
         isAnimating = true;
         const animations = getSelectionSortAnimations(this.state.array);
-        animation_speed /= num_bars*10;
         let delay = 0;
         for(let i = 0; i < animations.length; i++){
             const isColorChange = i % 2 === 0;
@@ -129,13 +127,11 @@ export default class SortingVisualizer extends React.Component{
         }
         
         this.greenArray(delay);
-        animation_speed*=num_bars*10;
     }
 
     bubbleSort(){
         isAnimating = true;
         const animations = getBubbleSortAnimations(this.state.array);
-        animation_speed/=num_bars*5;
         let delay = 0;
         for(let i = 0; i < animations.length; i++){
             
@@ -168,7 +164,7 @@ export default class SortingVisualizer extends React.Component{
             }
         }
         this.greenArray(delay);
-        animation_speed*=num_bars*5;
+
     }
 
     insertionSort(){
@@ -202,6 +198,12 @@ export default class SortingVisualizer extends React.Component{
                 }, delay++ * animation_speed);
             }
         }
+        this.greenArray(delay);
+    }
+
+    quickSort(){
+        const animations = getQuickSortAnimations(this.state.array);
+        window.alert(this.state.array);
     }
     
    
