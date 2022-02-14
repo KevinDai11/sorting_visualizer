@@ -9,7 +9,7 @@ export function getQuickSortAnimations(array){
 
 function partition(array,low,high,animations){
     let pivot = array[high];
-    
+
     let i = low - 1;
 
     for(let j = low; j <=high - 1; j++){
@@ -29,7 +29,7 @@ function partition(array,low,high,animations){
     return i+1;
 }
 
-function doQuick(array, low, high){
+function doQuick(array, low, high, animations){
     if(low < high){
         let temp = partition(array,low,high,animations);
 
