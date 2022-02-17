@@ -51,13 +51,14 @@ export default class SortingVisualizer extends React.Component{
     }
 
     greenArray(delay){
-        setTimeout(() => {
-            isAnimating = false;
-            for(var i = 0; i < arrayBars.length; i++){
-                const barOneStyle = arrayBars[i].style;
-                barOneStyle.backgroundColor = "lightgreen";
-            }
-        }, animation_speed * 1.025 * delay);
+        isAnimating = false;
+        for(let i = 0; i < arrayBars.length; i++){
+            setTimeout(() => {
+            const barOneStyle = arrayBars[i].style;
+            barOneStyle.backgroundColor = "lightgreen";
+            }, animation_speed * delay);
+            delay+=.1;
+        }
     }
 
     //sorts
@@ -202,8 +203,41 @@ export default class SortingVisualizer extends React.Component{
     }
 
     quickSort(){
+        isAnimating = true;
         const animations = getQuickSortAnimations(this.state.array);
-        window.alert(this.state.array);
+        let delay = 0;
+
+        for(let i = 0; i < animations.length; i++){
+            
+            if(animations[i].length == 2){
+                setTimeout(() => {
+                    const [barOneIdx, color] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    barOneStyle.backgroundColor = color;
+                }, delay++ * animation_speed);
+            }
+            else if(animations[i].length == 4){
+                setTimeout(() => {
+                    const [barOneIdx, color, barTwoIdx, color2] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    const barTwoStyle = arrayBars[barTwoIdx].style;
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color2;
+                }, delay++ * animation_speed);
+            }
+            else if(animations[i].length == 6){
+                setTimeout(() => {
+                    const [barOneIdx,newHeight, color, barTwoIdx, newHeight2, color2] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    const barTwoStyle = arrayBars[barTwoIdx].style;
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color2;
+                    barOneStyle.height = `${newHeight*5}px`;
+                    barTwoStyle.height = `${newHeight2*5}px`;
+                }, delay++ * animation_speed);
+            }
+        }
+        this.greenArray(delay);
     }
     
    
