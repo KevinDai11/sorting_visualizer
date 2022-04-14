@@ -17,7 +17,7 @@ function partition(array,low,high,animations){
         if(array[j]<pivot){
             i++;
 
-            if(j!=i){
+            if(j!==i){
             animations.push([j,"red",i,"red"]);
             animations.push([j,array[i],"red",i,array[j],"red"]);
             animations.push([j,array[i],"#ADD8E6",i,array[j],"#ADD8E6"]);}
