@@ -4,8 +4,9 @@ import {getSelectionSortAnimations} from "../SortingAlgorithms/selectionSort.js"
 import {getBubbleSortAnimations} from "../SortingAlgorithms/bubbleSort.js";
 import {getInsertionSortAnimations} from "../SortingAlgorithms/insertionSort.js";
 import { getQuickSortAnimations } from "../SortingAlgorithms/quickSort.js";
-import './sortingVisualizer.css';
 import { getHeapSortAnimations } from "../SortingAlgorithms/heapSort.js";
+import './sortingVisualizer.css';
+
 
 
 const PRIMARY_COLOR = "#ADD8E6"; //light blue
@@ -43,8 +44,8 @@ export default class SortingVisualizer extends React.Component{
         }
         
         const bars = document.getElementsByClassName('array-bar');
-        for(var i = 0; i < bars.length; i++){
-            const barOneStyle = bars[i].style;
+        for(var j = 0; j < bars.length; j++){
+            const barOneStyle = bars[j].style;
             barOneStyle.backgroundColor = PRIMARY_COLOR;
         }
         this.setState({array});
@@ -259,7 +260,7 @@ export default class SortingVisualizer extends React.Component{
                     barTwoStyle.backgroundColor = color2;
                 }, delay++ * animation_speed);
             }
-            else if(animations[i].length == 6){
+            else if(animations[i].length === 6){
                 setTimeout(() => {
                     const [barOneIdx, color, barTwoIdx, color2, barThreeIdx, color3] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
@@ -270,7 +271,7 @@ export default class SortingVisualizer extends React.Component{
                     barThreeStyle.backgroundColor = color3;
                 }, delay++ * animation_speed);
             }
-            else if(animations[i].length == 7){
+            else if(animations[i].length === 7){
                 setTimeout(() => {
                     const [barOneIdx, color, newHeight, barTwoIdx, color2, newHeight2, boo] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
@@ -284,7 +285,7 @@ export default class SortingVisualizer extends React.Component{
         }
 
         this.greenArray(delay);
-        
+
         
     }
     

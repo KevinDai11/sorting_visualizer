@@ -19,7 +19,7 @@ function doSelection(array, animations){
         for(let j = i + 1; j < n; j++){
             const animateHighlightTemp = [];
             animateHighlightTemp.push(j,"yellow");
-            if(j>1 && j-1!=min_index) animateHighlightTemp.push(j-1,"#ADD8E6");
+            if(j>1 && j-1!==min_index) animateHighlightTemp.push(j-1,"#ADD8E6");
             animateHighlight.push(animateHighlightTemp);
             if(array[j] < array[min_index]){
                 const listAnimate = []
@@ -30,7 +30,7 @@ function doSelection(array, animations){
             }
             
         }
-        if(n-1!=min_index)animateHighlight.push([n-1,"#ADD8E6"]);
+        if(n-1!==min_index)animateHighlight.push([n-1,"#ADD8E6"]);
         animations.push(animateHighlight);
 
         const animateChangeList = []
