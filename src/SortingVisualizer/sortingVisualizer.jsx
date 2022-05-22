@@ -332,7 +332,7 @@ export default class SortingVisualizer extends Component{
             </div>
             <div className = "sliders">
                 <div className= "array-size">
-                    <p className="array-text">Array Size:</p>
+                    <p className="array-text">Array Size: {num_bars}</p>
                     <Slider className="slider-array"
                         value={num_bars}
                         onChange={this.handleOnChange}
@@ -343,8 +343,8 @@ export default class SortingVisualizer extends Component{
                 </div>
                 
                 <div className= "animation-speed">
-                    <h1 className="array-text">Animation Speed:</h1>
-                    <Slider
+                    <p className="array-text">Animation Speed:</p>
+                    <Slider className="slider-array"
                         value = {animation_speed}
                         onChange={this.handleOnChange2}
                         min={0}
@@ -370,7 +370,9 @@ export default class SortingVisualizer extends Component{
             </div>
             
          
-
+        <div className="credits">
+            <small>created by Kevin Dai</small>
+        </div>
         </div>
           
         );

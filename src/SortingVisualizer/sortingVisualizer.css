@@ -9,6 +9,7 @@
         "array";
 }
 
+
 .title-container{
     grid-area: "title";
     height: 12vh;
@@ -20,6 +21,8 @@
 .sorting-buttons{
     margin-top: 15px;
     grid-area: "buttons";
+    position: relative;
+    
     }
 
 .gen-button{
@@ -48,7 +51,6 @@
     position: absolute;
     bottom: 50px;
     grid-area: "array";
-    align-items: center;
     bottom: 1.5%;
     z-index: 1;
     
@@ -63,22 +65,23 @@
 
 
 .sliders{
-    z-index: 20000;
     position: relative;
     grid-area: "sliders";
-}
-.array-size{
-    
-    margin-left: 100px;
-    max-width: 400px;
-}
-
-.animation-speed{
-    margin-left: 100px;
-    max-width: 400px;
+    width: 50%;
+    margin: 0 auto ;
 }
 .array-text{
     font-size: 1.3em;
     font-weight: bold;
-    margin-bottom: -20px;
+    margin-bottom: -15px;      
+}
+
+
+.credits{
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    font-size: 1.1em;
+    color: beige;
+    text-align: right;
 }
