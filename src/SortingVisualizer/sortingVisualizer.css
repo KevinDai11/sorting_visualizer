@@ -5,6 +5,7 @@
     grid-template-areas: 
         "title"
         "buttons"
+        "sliders"
         "array";
 }
 
@@ -17,7 +18,7 @@
 }
 
 .sorting-buttons{
-    margin-top: 50px;
+    margin-top: 15px;
     grid-area: "buttons";
     }
 
@@ -43,18 +44,41 @@
 }
 
 .array-container {
-    margin-top: 50px;
     width: 100%;
     position: absolute;
     bottom: 50px;
     grid-area: "array";
     align-items: center;
-    bottom: 5%;
+    bottom: 1.5%;
+    z-index: 1;
+    
 }
 
 .array-bar {
     width: 10px;
     display: inline-block;
     margin: 0 2px;
+
 }
 
+
+.sliders{
+    z-index: 20000;
+    position: relative;
+    grid-area: "sliders";
+}
+.array-size{
+    
+    margin-left: 100px;
+    max-width: 400px;
+}
+
+.animation-speed{
+    margin-left: 100px;
+    max-width: 400px;
+}
+.array-text{
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: -20px;
+}
